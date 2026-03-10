@@ -1,64 +1,60 @@
-/* A simple css reset */
-body,
-html {
+/* 1. Basic Reset */
+body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    /* The Font Family- Really important!! */
     font-family: Arial, sans-serif;
     box-sizing: border-box;
 }
 
-/* reset for images to ensure they ar 100% of the parent container width */
 img { 
     width: 100%;
 }
 
-/* The hero section styling- use your OWN Hero Image URL here */
+/* 2. Hero Section */
 .hero {
-    background-image: url("header1.png");
-    /* Additional properties for better control: */
-    background-repeat: no-repeat; /* Prevents the image from tiling */
-    background-size: cover; /* Ensures the image covers the entire background */
-    background-position: center; /* Centers the image */
-    height: 25vh;
+    background-image: url("images/header1.png"); 
+    background-color: #333; 
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    height: 40vh; 
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
-    text-align: center;
-    position: relative;
 }
 
-/* BIG text styling for the hero section text */
 .hero-text {
     font-size: 4em;
     font-weight: bold;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 
-/* nice big font on a banner style background */
-.topic-title{
+/* 3. Image Editing Title Bar */
+.topic-title {
     color: white;
-    font-size: 2em;
-    padding: 0.1em 3em;
     background-color: rgb(71, 71, 71);
+    padding: 15px 0;
+    text-align: center;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 
-/* Three column grid with a nice big gap */
-.topic-content{
+.topic-title h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+/* 4. Grid and Cards */
+.topic-content {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 6em;
-    /* bring the whole section in off the sides of the page */
-    width: 70%;
-    /* top margin of 3em and center right/left */
+    gap: 2em; /* Reduced from 6em so it fits better on school screens */
+    width: 80%;
     margin: 3em auto;
 }
 
-/* Styling for the individual topic cards rounded edges background color and a drop shadow */
-.topic-card{
+.topic-card {
     background-color: rgb(71, 71, 71);
     color: white;
     padding: 1em;
@@ -66,19 +62,17 @@ img {
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Styling for the topic card titles */
-.topic-card-text{
+.topic-card-text {
     font-size: 1.5em;
-    margin-bottom: 0.5em;
-    /* center align text */
+    margin-top: 0.5em;
     text-align: center;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 
-
-/* Styling for a footer section to take a bit of spcae at the bottom of the page */
-.footer{
+/* 5. Footer */
+.footer {
     background-color: rgb(71, 71, 71);
     color: skyblue;
     text-align: center;
-    padding: 3em 3em;
+    padding: 3em;
 }
