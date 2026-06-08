@@ -1,78 +1,220 @@
-/* 1. Basic Reset */
+/* ==========================================================================
+   1. BASIC SETUP & VARIABLES
+   ========================================================================== */
+:root {
+    --primary-blue: #0056b3;      
+    --light-blue: #f0f7ff;        /* Very subtle light blue for alternating sections */
+    --accent-blue: #00a8ff;       
+    --dark-text: #333333;         
+    --white: #ffffff;             
+    --gray-bg: #fbfcff;           
+}
+
 body, html {
     margin: 0;
     padding: 0;
-    height: 100%;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    background-color: var(--gray-bg);
+    color: var(--dark-text);
     box-sizing: border-box;
 }
 
 img { 
     width: 100%;
+    border-radius: 8px; 
 }
 
-/* 2. Hero Section */
+/* ==========================================================================
+   2. HERO SECTION
+   ========================================================================== */
 .hero {
     background-image: url("images/header1.png"); 
     background-color: #333; 
-    background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 40vh; 
+    height: 45vh; 
     display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
+    justify-content: center; 
+    align-items: center;     
+    text-align: center;
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
 }
 
 .hero-text {
     font-size: 4em;
-    font-weight: bold;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-}
-
-/* 3. Image Editing Title Bar */
-.topic-title {
-    color: white;
-    background-color: rgb(71, 71, 71);
-    padding: 15px 0;
-    text-align: center;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-}
-
-.topic-title h1 {
     margin: 0;
-    font-size: 2.5em;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6); 
 }
 
-/* 4. Grid and Cards */
+.hero-subtext {
+    font-size: 1.5em;
+    margin-top: 10px;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+}
+
+/* ==========================================================================
+   3. INTRO BANNER (Why I Chose Digitech)
+   ========================================================================== */
+.intro-banner {
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+    color: var(--white);
+    padding: 4em 2em 5em 2em;
+    text-align: center;
+    /* This creates a curved dip transition between the banner and the next section */
+    border-bottom-left-radius: 50% 20px;
+    border-bottom-right-radius: 50% 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    margin-bottom: 0;
+}
+
+.intro-container {
+    max-width: 900px; 
+    margin: 0 auto;   
+}
+
+.intro-container h2 {
+    font-size: 2.5em;
+    margin-top: 0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.intro-container p {
+    font-size: 1.25em;
+    line-height: 1.6; 
+}
+
+/* ==========================================================================
+   4. COOL PAGE LOAD ANIMATION
+   ========================================================================== */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-section {
+    animation: fadeUp 1s ease-out forwards;
+}
+
+/* ==========================================================================
+   5. TOPIC SECTIONS & BACKGROUND TRANSITIONS
+   ========================================================================== */
+.topic {
+    padding: 4em 0; /* Adds massive breathing room between sections */
+}
+
+/* Makes alternating sections have different background colors */
+.section-white {
+    background-color: var(--white);
+}
+
+.section-blue {
+    background-color: var(--light-blue);
+    border-top: 2px solid #e1efff; /* Subtle line transition */
+    border-bottom: 2px solid #e1efff;
+}
+
+.topic-title {
+    text-align: center;
+    padding-bottom: 2em;
+    color: var(--primary-blue);
+}
+
+.topic-title h2 {
+    font-size: 2.5em;
+    margin: 0;
+    border-bottom: 4px solid var(--accent-blue); 
+    display: inline-block; 
+    padding-bottom: 5px;
+}
+
+/* ==========================================================================
+   6. GRID AND CARDS
+   ========================================================================== */
 .topic-content {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2em; /* Reduced from 6em so it fits better on school screens */
-    width: 80%;
-    margin: 3em auto;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 2em; 
+    width: 85%;
+    margin: 0 auto;
 }
 
 .topic-card {
-    background-color: rgb(71, 71, 71);
-    color: white;
-    padding: 1em;
-    border-radius: 0.5em;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+    background-color: var(--white);
+    border-radius: 12px; 
+    padding: 1.5em;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Clean shadow so cards pop off the background */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
-.topic-card-text {
+.topic-card:hover {
+    transform: translateY(-10px); 
+    box-shadow: 0 15px 30px rgba(0, 86, 179, 0.15); 
+}
+
+.card-text-area {
+    text-align: center;
+    margin-top: 1em;
+}
+
+.topic-card-title {
     font-size: 1.5em;
-    margin-top: 0.5em;
-    text-align: center;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    color: var(--primary-blue);
+    margin: 0 0 10px 0;
 }
 
-/* 5. Footer */
+.topic-card-description {
+    font-size: 1em;
+    color: var(--dark-text);
+    line-height: 1.5;
+    text-align: justify; 
+}
+
+/* ==========================================================================
+   7. THREE-COLUMN LAYOUT (About Python Projects)
+   ========================================================================== */
+.about-container {
+    display: flex;
+    align-items: flex-start; 
+    gap: 3em;
+    width: 85%;
+    margin: 4em auto 0 auto; /* Pushes it down slightly from the cards above */
+    background-color: var(--white); 
+    padding: 2.5em;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05); 
+}
+
+.about-image {
+    flex: 1; 
+}
+
+.about-text {
+    flex: 1; 
+}
+
+.about-text h2 {
+    margin-top: 0;
+    color: var(--primary-blue);
+}
+
+.about-text p {
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   8. FOOTER
+   ========================================================================== */
 .footer {
-    background-color: rgb(71, 71, 71);
-    color: skyblue;
+    background-color: var(--primary-blue); 
+    color: var(--white);
     text-align: center;
-    padding: 3em;
+    padding: 2em;
+    margin-top: 0; /* Removed margin so it sits flush with the section above */
 }
