@@ -218,3 +218,59 @@ img {
     padding: 2em;
     margin-top: 0; /* Removed margin so it sits flush with the section above */
 }
+
+/* ==========================================================================
+   9. 3D MODELING SECTION
+   ========================================================================== */
+.three-d-container {
+    display: flex;
+    align-items: center; 
+    gap: 3em;
+    width: 85%;
+    margin: 0 auto;
+    background-color: var(--light-blue); /* Subtle blue background to pop off the white section */
+    padding: 2.5em;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05); 
+}
+
+.three-d-text {
+    flex: 1; 
+}
+
+.three-d-text h3 {
+    color: var(--primary-blue);
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.three-d-text p {
+    line-height: 1.6;
+    font-size: 1.1em;
+    color: var(--dark-text);
+    margin-bottom: 15px;
+}
+
+.three-d-viewer-box {
+    flex: 1; 
+    display: flex;
+    justify-content: center;
+}
+
+/* Styling the 3D window to match Zach's theme */
+model-viewer {
+    width: 100%;
+    height: 400px;
+    background-color: var(--white); 
+    border-radius: 12px;
+    box-shadow: inset 0 4px 10px rgba(0,0,0,0.05), 0 4px 15px rgba(0,0,0,0.1); 
+}
+
+/* Mobile responsiveness for the 3D section */
+@media (max-width: 800px) {
+    .three-d-container {
+        flex-direction: column;
+        text-align: center;
+    }
+}

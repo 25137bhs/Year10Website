@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Zach's Showcase Website</title>
+
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
 </head>
 
 <body>
@@ -100,6 +102,34 @@
             
             <div class="about-image">
                 <img src="images/turtle.PNG" alt="Right side image placeholder">
+            </div>
+        </div>
+    </section>
+
+    <section class="topic section-white fade-in-section">
+        <div class="topic-title">
+            <h2>3D Modeling</h2>
+        </div>
+        
+        <div class="three-d-container">
+            <div class="three-d-text">
+                <h3>My First 3D Interactive Model</h3>
+                <p>
+                    For this unit, I learned how to use Blender to create a 3D model from scratch. I built this custom sign by shaping geometry, applying materials, and adjusting the emission strength to give the text a glowing LED effect. 
+                </p>
+                <p>
+                    Instead of just showing a picture, I used HTML and Google's model-viewer component to make the model fully interactive right here on the web. <strong>Go ahead and click, drag to spin it around, or scroll to zoom in!</strong>
+                </p>
+            </div>
+            
+            <div class="three-d-viewer-box">
+                <model-viewer 
+                    src="love-sign.glb" 
+                    alt="A 3D model of a little red sign" 
+                    camera-controls 
+                    auto-rotate
+                    shadow-intensity="1">
+                </model-viewer>
             </div>
         </div>
     </section>
