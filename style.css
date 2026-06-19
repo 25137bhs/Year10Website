@@ -1,6 +1,7 @@
-/* ==========================================================================
-   1. BASIC SETUP & VARIABLES
-   ========================================================================== */
+html {
+    scroll-behavior: smooth;
+}
+
 :root {
     --primary-blue: #0056b3;      
     --light-blue: #f0f7ff;        /* Very subtle light blue for alternating sections */
@@ -25,20 +26,73 @@ img {
 }
 
 /* ==========================================================================
+   FLUID WATER WAVES UTILITIES
+   ========================================================================== */
+.section-relative {
+    position: relative;
+    /* Extra padding at the bottom so the text never touches the water waves */
+    padding-bottom: 8em !important; 
+}
+
+.wave-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    z-index: 1; /* Keeps it behind the content */
+}
+
+.wave-bottom svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 100px;
+}
+
+.wave-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg); /* Flips the wave to the top of the section */
+    z-index: 1;
+}
+
+.wave-top svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 100px;
+}
+
+/* Ensure content stays above the waves */
+.topic-content, .three-d-container, .about-container, .about-me-split, .achievements-row, .intro-container {
+    position: relative;
+    z-index: 2; 
+}
+
+/* ==========================================================================
    2. HERO SECTION
    ========================================================================== */
-.hero {
-    background-image: url("images/header1.png"); 
-    background-color: #333; 
-    background-size: cover;
+
+.header, .hero {
+    /* Replace 'header1.png' with the actual name of your cool new image */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/header1.png'); 
+    background-attachment: fixed; /* THIS creates the deep scroll effect! */
     background-position: center;
-    height: 45vh; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    height: 100vh; 
     display: flex;
-    justify-content: center; 
-    align-items: center;     
-    text-align: center;
-    color: var(--white);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
 }
 
 .hero-text {
@@ -59,11 +113,8 @@ img {
 .intro-banner {
     background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
     color: var(--white);
-    padding: 4em 2em 5em 2em;
+    padding: 4em 2em 8em 2em; /* Extra padding for the wave */
     text-align: center;
-    /* This creates a curved dip transition between the banner and the next section */
-    border-bottom-left-radius: 50% 20px;
-    border-bottom-right-radius: 50% 20px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     margin-bottom: 0;
 }
@@ -106,7 +157,7 @@ img {
    5. TOPIC SECTIONS & BACKGROUND TRANSITIONS
    ========================================================================== */
 .topic {
-    padding: 4em 0; /* Adds massive breathing room between sections */
+    padding: 4em 0; 
 }
 
 /* Makes alternating sections have different background colors */
@@ -116,14 +167,15 @@ img {
 
 .section-blue {
     background-color: var(--light-blue);
-    border-top: 2px solid #e1efff; /* Subtle line transition */
-    border-bottom: 2px solid #e1efff;
+    /* Removed the borders here so the wave seamlessly blends */
 }
 
 .topic-title {
     text-align: center;
     padding-bottom: 2em;
     color: var(--primary-blue);
+    position: relative;
+    z-index: 2;
 }
 
 .topic-title h2 {
@@ -149,7 +201,7 @@ img {
     background-color: var(--white);
     border-radius: 12px; 
     padding: 1.5em;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Clean shadow so cards pop off the background */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); 
     transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
@@ -184,7 +236,7 @@ img {
     align-items: flex-start; 
     gap: 3em;
     width: 85%;
-    margin: 4em auto 0 auto; /* Pushes it down slightly from the cards above */
+    margin: 4em auto 0 auto; 
     background-color: var(--white); 
     padding: 2.5em;
     border-radius: 16px;
@@ -216,7 +268,7 @@ img {
     color: var(--white);
     text-align: center;
     padding: 2em;
-    margin-top: 0; /* Removed margin so it sits flush with the section above */
+    margin-top: 0; 
 }
 
 /* ==========================================================================
@@ -228,7 +280,7 @@ img {
     gap: 3em;
     width: 85%;
     margin: 0 auto;
-    background-color: var(--light-blue); /* Subtle blue background to pop off the white section */
+    background-color: var(--light-blue); 
     padding: 2.5em;
     border-radius: 16px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.05); 
@@ -258,7 +310,6 @@ img {
     justify-content: center;
 }
 
-/* Styling the 3D window to match Zach's theme */
 model-viewer {
     width: 100%;
     height: 400px;
@@ -267,10 +318,105 @@ model-viewer {
     box-shadow: inset 0 4px 10px rgba(0,0,0,0.05), 0 4px 15px rgba(0,0,0,0.1); 
 }
 
-/* Mobile responsiveness for the 3D section */
 @media (max-width: 800px) {
     .three-d-container {
         flex-direction: column;
         text-align: center;
     }
+}
+
+/* ==========================================================================
+   10. PARALLAX BREAK SECTION (NEW!)
+   ========================================================================== */
+.parallax-divider {
+    /* REMEMBER to add a cool new surfing or ocean image named surf-parallax.jpg! */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('images/surf-parallax.jpg'); 
+    background-attachment: fixed; /* Creates the scroll effect */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    height: 60vh; /* Shorter than the hero section to act as a 'window' */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ==========================================================================
+   11. ABOUT ME SECTION
+   ========================================================================== */
+.about-me-split {
+    display: flex;
+    align-items: center; 
+    gap: 4em;
+    width: 85%;
+    margin: 0 auto;
+    background-color: var(--white);
+    padding: 3em;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}
+
+.about-me-text {
+    flex: 1.2; 
+}
+
+.about-me-text h3 {
+    color: var(--primary-blue);
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.about-me-text p {
+    font-size: 1.15em;
+    line-height: 1.6;
+    color: var(--dark-text);
+    margin-bottom: 15px;
+}
+
+.about-me-image {
+    flex: 1;
+}
+
+.about-me-image img {
+    border: 4px solid var(--white);
+    box-shadow: 0 8px 25px rgba(0, 168, 255, 0.3); 
+    border-radius: 12px;
+}
+
+.achievements-row {
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+    gap: 2em; 
+    width: 100%;
+    flex-wrap: wrap; 
+}
+
+.achievement-card {
+    flex: 1; 
+    min-width: 250px; 
+    max-width: 350px; 
+    
+    background-color: var(--white);
+    padding: 2em;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid var(--accent-blue);
+    box-shadow: 0 8px 20px rgba(0, 168, 255, 0.15); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.achievement-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 168, 255, 0.35); 
+}
+
+.achievement-card img {
+    width: 100%;
+    height: 350px; 
+    object-fit: cover; 
+    border-radius: 8px;
+    margin-bottom: 15px;
 }
