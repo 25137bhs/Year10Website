@@ -46,16 +46,21 @@ img {
 /* ==========================================================================
    NEW: FROSTED GLASS NAVIGATION BAR
    ========================================================================== */
+/* ==========================================================================
+   UPDATED: FROSTED GLASS NAVIGATION BAR
+   ========================================================================== */
 .glass-nav {
-    position: sticky;
+    position: fixed; /* Changed from sticky to fixed so it overlays the image */
     top: 0;
-    z-index: 1000; /* Keeps it above everything else */
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(12px); /* The frosted glass magic */
+    left: 0;
+    width: 100%;
+    z-index: 1000; 
+    /* Lowered the white values so it blends into the image better */
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(12px); 
     -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     padding: 1.2em 0;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
 .glass-nav ul {
@@ -69,9 +74,10 @@ img {
 
 .glass-nav a {
     text-decoration: none;
-    color: var(--primary-blue);
+    color: var(--white); /* Changed to white so it's readable over the image */
     font-weight: 600;
     font-size: 1.1em;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Added shadow for readability */
     transition: color 0.3s ease;
 }
 
@@ -89,16 +95,16 @@ img {
 }
 
 /* ==========================================================================
-   NEW: SCROLL-TRIGGERED ANIMATIONS
+   UPDATED: SCROLL-TRIGGERED ANIMATIONS (SLOWER)
    ========================================================================== */
 .fade-in-section {
     opacity: 0;
     transform: translateY(40px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    /* Changed from 0.8s to 1.5s to make the animation much slower and smoother */
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
     will-change: opacity, visibility;
 }
 
-/* The Javascript adds this class when you scroll down to the element */
 .fade-in-section.is-visible {
     opacity: 1;
     transform: none;
