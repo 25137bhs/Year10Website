@@ -1,10 +1,28 @@
+/* ==========================================================================
+   GLOBAL & NEW CUSTOM SCROLLBAR
+   ========================================================================== */
 html {
     scroll-behavior: smooth;
 }
 
+/* This targets the browser's scrollbar track and thumb */
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    background: #fbfcff; 
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #0056b3, #00a8ff);
+    border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #00a8ff, #0056b3);
+}
+
 :root {
     --primary-blue: #0056b3;      
-    --light-blue: #f0f7ff;        /* Very subtle light blue for alternating sections */
+    --light-blue: #f0f7ff;        
     --accent-blue: #00a8ff;       
     --dark-text: #333333;         
     --white: #ffffff;             
@@ -26,11 +44,71 @@ img {
 }
 
 /* ==========================================================================
+   NEW: FROSTED GLASS NAVIGATION BAR
+   ========================================================================== */
+.glass-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Keeps it above everything else */
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px); /* The frosted glass magic */
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 1.2em 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.glass-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 3em;
+}
+
+.glass-nav a {
+    text-decoration: none;
+    color: var(--primary-blue);
+    font-weight: 600;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+
+.glass-nav a:hover {
+    color: var(--accent-blue);
+}
+
+/* Mobile responsiveness for nav */
+@media (max-width: 800px) {
+    .glass-nav ul {
+        gap: 1em;
+        font-size: 0.9em;
+        flex-wrap: wrap;
+    }
+}
+
+/* ==========================================================================
+   NEW: SCROLL-TRIGGERED ANIMATIONS
+   ========================================================================== */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, visibility;
+}
+
+/* The Javascript adds this class when you scroll down to the element */
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* ==========================================================================
    FLUID WATER WAVES UTILITIES
    ========================================================================== */
 .section-relative {
     position: relative;
-    /* Extra padding at the bottom so the text never touches the water waves */
     padding-bottom: 8em !important; 
 }
 
@@ -41,7 +119,7 @@ img {
     width: 100%;
     overflow: hidden;
     line-height: 0;
-    z-index: 1; /* Keeps it behind the content */
+    z-index: 1; 
 }
 
 .wave-bottom svg {
@@ -58,7 +136,7 @@ img {
     width: 100%;
     overflow: hidden;
     line-height: 0;
-    transform: rotate(180deg); /* Flips the wave to the top of the section */
+    transform: rotate(180deg); 
     z-index: 1;
 }
 
@@ -69,25 +147,23 @@ img {
     height: 100px;
 }
 
-/* Ensure content stays above the waves */
 .topic-content, .three-d-container, .about-container, .about-me-split, .achievements-row, .intro-container {
     position: relative;
     z-index: 2; 
 }
 
 /* ==========================================================================
-   2. HERO SECTION
+   HERO SECTION
    ========================================================================== */
-
 .header, .hero {
-    /* Replace 'header1.png' with the actual name of your cool new image */
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/header1.png'); 
-    background-attachment: fixed; /* THIS creates the deep scroll effect! */
+    background-attachment: fixed; 
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     
-    height: 100vh; 
+    /* Adjusted slightly so the new navbar doesn't cover the top */
+    height: calc(100vh - 60px); 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -108,12 +184,12 @@ img {
 }
 
 /* ==========================================================================
-   3. INTRO BANNER (Why I Chose Digitech)
+   INTRO BANNER 
    ========================================================================== */
 .intro-banner {
     background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
     color: var(--white);
-    padding: 4em 2em 8em 2em; /* Extra padding for the wave */
+    padding: 4em 2em 8em 2em; 
     text-align: center;
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     margin-bottom: 0;
@@ -136,38 +212,18 @@ img {
 }
 
 /* ==========================================================================
-   4. COOL PAGE LOAD ANIMATION
-   ========================================================================== */
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.fade-in-section {
-    animation: fadeUp 1s ease-out forwards;
-}
-
-/* ==========================================================================
-   5. TOPIC SECTIONS & BACKGROUND TRANSITIONS
+   TOPIC SECTIONS & GRID CARDS
    ========================================================================== */
 .topic {
     padding: 4em 0; 
 }
 
-/* Makes alternating sections have different background colors */
 .section-white {
     background-color: var(--white);
 }
 
 .section-blue {
     background-color: var(--light-blue);
-    /* Removed the borders here so the wave seamlessly blends */
 }
 
 .topic-title {
@@ -186,9 +242,6 @@ img {
     padding-bottom: 5px;
 }
 
-/* ==========================================================================
-   6. GRID AND CARDS
-   ========================================================================== */
 .topic-content {
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
@@ -229,7 +282,7 @@ img {
 }
 
 /* ==========================================================================
-   7. THREE-COLUMN LAYOUT (About Python Projects)
+   PYTHON SECTION 
    ========================================================================== */
 .about-container {
     display: flex;
@@ -261,18 +314,7 @@ img {
 }
 
 /* ==========================================================================
-   8. FOOTER
-   ========================================================================== */
-.footer {
-    background-color: var(--primary-blue); 
-    color: var(--white);
-    text-align: center;
-    padding: 2em;
-    margin-top: 0; 
-}
-
-/* ==========================================================================
-   9. 3D MODELING SECTION
+   3D MODELING SECTION
    ========================================================================== */
 .three-d-container {
     display: flex;
@@ -326,24 +368,23 @@ model-viewer {
 }
 
 /* ==========================================================================
-   10. PARALLAX BREAK SECTION (NEW!)
+   PARALLAX BREAK SECTION
    ========================================================================== */
 .parallax-divider {
-    /* REMEMBER to add a cool new surfing or ocean image named surf-parallax.jpg! */
     background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('images/surf-parallax.jpg'); 
-    background-attachment: fixed; /* Creates the scroll effect */
+    background-attachment: fixed; 
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     
-    height: 60vh; /* Shorter than the hero section to act as a 'window' */
+    height: 60vh; 
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 /* ==========================================================================
-   11. ABOUT ME SECTION
+   ABOUT ME SECTION
    ========================================================================== */
 .about-me-split {
     display: flex;
@@ -419,4 +460,15 @@ model-viewer {
     object-fit: cover; 
     border-radius: 8px;
     margin-bottom: 15px;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.footer {
+    background-color: var(--primary-blue); 
+    color: var(--white);
+    text-align: center;
+    padding: 2em;
+    margin-top: 0; 
 }
