@@ -1,11 +1,10 @@
 /* ==========================================================================
-   GLOBAL & NEW CUSTOM SCROLLBAR
+   GLOBAL & CUSTOM SCROLLBAR
    ========================================================================== */
 html {
     scroll-behavior: smooth;
 }
 
-/* This targets the browser's scrollbar track and thumb */
 ::-webkit-scrollbar {
     width: 12px;
 }
@@ -44,18 +43,14 @@ img {
 }
 
 /* ==========================================================================
-   NEW: FROSTED GLASS NAVIGATION BAR
-   ========================================================================== */
-/* ==========================================================================
-   UPDATED: FROSTED GLASS NAVIGATION BAR
+   FROSTED GLASS NAVIGATION BAR
    ========================================================================== */
 .glass-nav {
-    position: fixed; /* Changed from sticky to fixed so it overlays the image */
+    position: fixed; 
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000; 
-    /* Lowered the white values so it blends into the image better */
     background: rgba(255, 255, 255, 0.1); 
     backdrop-filter: blur(12px); 
     -webkit-backdrop-filter: blur(12px);
@@ -74,10 +69,10 @@ img {
 
 .glass-nav a {
     text-decoration: none;
-    color: var(--white); /* Changed to white so it's readable over the image */
+    color: var(--white); 
     font-weight: 600;
     font-size: 1.1em;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Added shadow for readability */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); 
     transition: color 0.3s ease;
 }
 
@@ -85,7 +80,6 @@ img {
     color: var(--accent-blue);
 }
 
-/* Mobile responsiveness for nav */
 @media (max-width: 800px) {
     .glass-nav ul {
         gap: 1em;
@@ -95,13 +89,12 @@ img {
 }
 
 /* ==========================================================================
-   UPDATED: SCROLL-TRIGGERED ANIMATIONS (SLOWER)
+   SCROLL-TRIGGERED ANIMATIONS
    ========================================================================== */
 .fade-in-section {
     opacity: 0;
     transform: translateY(40px);
-    /* Changed from 0.8s to 1.5s to make the animation much slower and smoother */
-    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out; /* Slowed down to 1.5s */
     will-change: opacity, visibility;
 }
 
@@ -153,7 +146,7 @@ img {
     height: 100px;
 }
 
-.topic-content, .three-d-container, .about-container, .about-me-split, .achievements-row, .intro-container {
+.topic-content, .three-d-container, .about-container, .about-me-split, .achievements-row, .intro-container, .commitments-grid {
     position: relative;
     z-index: 2; 
 }
@@ -167,8 +160,6 @@ img {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    
-    /* Adjusted slightly so the new navbar doesn't cover the top */
     height: calc(100vh - 60px); 
     display: flex;
     flex-direction: column;
@@ -466,6 +457,77 @@ model-viewer {
     object-fit: cover; 
     border-radius: 8px;
     margin-bottom: 15px;
+}
+
+/* ==========================================================================
+   NEW: COMMITMENTS SECTION (2x2 GRID WITH HOVER ZOOMS)
+   ========================================================================== */
+.commitments-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates the 2x2 layout */
+    gap: 2.5em;
+    width: 85%;
+    margin: 0 auto;
+}
+
+.commitment-card {
+    background-color: var(--light-blue);
+    border-radius: 16px;
+    overflow: hidden; /* Ensures the zoomed image doesn't break out of the card */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 2px solid transparent;
+}
+
+/* Elevates the whole card on hover */
+.commitment-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 86, 179, 0.2);
+    border: 2px solid var(--accent-blue);
+}
+
+.commitment-img-wrapper {
+    width: 100%;
+    height: 300px;
+    overflow: hidden; /* Clips the image when it scales */
+}
+
+/* The actual image inside the box */
+.commitment-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0; /* Removing radius here so it fills the square wrapper */
+    transition: transform 0.6s ease; /* Smooth zoom transition */
+}
+
+/* The cool hover feature: Zooms the image in slightly */
+.commitment-card:hover .commitment-img-wrapper img {
+    transform: scale(1.1); 
+}
+
+.commitment-info {
+    padding: 1.5em;
+    text-align: center;
+}
+
+.commitment-info h3 {
+    color: var(--primary-blue);
+    margin: 0 0 10px 0;
+    font-size: 1.6em;
+}
+
+.commitment-info p {
+    color: var(--dark-text);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Makes the 2x2 grid stack into a single column on phones */
+@media (max-width: 800px) {
+    .commitments-grid {
+        grid-template-columns: 1fr; 
+    }
 }
 
 /* ==========================================================================

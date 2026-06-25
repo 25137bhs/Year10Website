@@ -12,16 +12,6 @@
 
 <body>
 
-    <nav class="glass-nav">
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#image-editing">Image Editing</a></li>
-            <li><a href="#comp-sci">Computer Science</a></li>
-            <li><a href="#3d-model">3D Modeling</a></li>
-            <li><a href="#about-me">About Me</a></li>
-        </ul>
-    </nav>
-
     <nav class="glass-nav fade-in-section">
         <ul>
             <li><a href="#home">Home</a></li>
@@ -29,9 +19,10 @@
             <li><a href="#comp-sci">Computer Science</a></li>
             <li><a href="#3d-model">3D Modeling</a></li>
             <li><a href="#about-me">About Me</a></li>
+            <li><a href="#commitments">Commitments</a></li>
         </ul>
     </nav>
-   
+
     <section class="hero" id="home">
         <div class="hero-content">
             <h1 class="hero-text fade-in-section">My Showcase Website</h1>
@@ -234,6 +225,62 @@
         
         <div class="wave-bottom">
             <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+                <path fill="var(--white)" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+    </section>
+
+    <section class="topic section-white section-relative fade-in-section" id="commitments">
+        <div class="topic-title">
+            <h2>My Commitments</h2>
+        </div>
+
+        <div class="commitments-grid fade-in-section">
+            
+            <div class="commitment-card">
+                <div class="commitment-img-wrapper">
+                    <img src="images/Jasi.JPG" alt="Jasi Swim Club"> 
+                </div>
+                <div class="commitment-info">
+                    <h3>Jasi Swim Club</h3>
+                    <p>Training hard in the pool and constantly pushing my limits.</p>
+                </div>
+            </div>
+
+            <div class="commitment-card">
+                <div class="commitment-img-wrapper">
+                    <img src="images/NB.JPG" alt="New Brighton Surf Club">
+                </div>
+                <div class="commitment-info">
+                    <h3>New Brighton Surf Club</h3>
+                    <p>Racing through the surf and representing the club.</p>
+                </div>
+            </div>
+
+            <div class="commitment-card">
+                <div class="commitment-img-wrapper">
+                    <img src="images/BHS.JPG" alt="Burnside High School">
+                </div>
+                <div class="commitment-info">
+                    <h3>Burnside High School</h3>
+                    <p>Balancing academics and representing my school in competitive sports.</p>
+                </div>
+            </div>
+
+            <div class="commitment-card">
+                <div class="commitment-img-wrapper">
+                    <img src="images/CIWR.JPG" alt="Cook Islands Whale Research">
+                </div>
+                <div class="commitment-info">
+                    <h3>Cook Islands Whale Research</h3>
+                    <p>Passionate about marine life and contributing to vital ocean research.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="wave-bottom">
+            <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
                 <path fill="var(--primary-blue)" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
             </svg>
         </div>
@@ -245,16 +292,14 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // This watches the screen and triggers the CSS animation when elements come into view
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
                     }
                 });
-            }, { threshold: 0.1 }); // 0.1 means it triggers when 10% of the element is visible
+            }, { threshold: 0.1 }); 
             
-            // Apply this to everything with the class 'fade-in-section'
             document.querySelectorAll('.fade-in-section').forEach((el) => {
                 observer.observe(el);
             });
